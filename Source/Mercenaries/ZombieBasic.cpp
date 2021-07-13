@@ -19,7 +19,6 @@ void AZombieBasic::BeginPlay()
 	Super::BeginPlay();
 	currentHealth = maxHealth;
 	OnActorBeginOverlap.AddDynamic(this, &AZombieBasic::DamageOnOverlap);
-	
 }
 
 float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
