@@ -80,6 +80,20 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+void AMainCharacter::MoveForward(float value)
+{
+	//Find out which way is "forward" and reocrd that the player wants to move that way
+	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
+	AddMovementInput(Direction, value);
+}
+
+void AMainCharacter::MoveRight(float value)
+{
+	//Find out which way is "right" and record that the player wants to move that way
+	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
+	AddMovementInput(Direction, value);
+}
+
 void AMainCharacter::Shoot()
 {
 	Handgun->Shoot();
@@ -108,18 +122,7 @@ float AMainCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& 
 	return DamageAmount;
 }
 
-void AMainCharacter::MoveForward(float value)
-{
-	//Find out which way is "forward" and reocrd that the player wants to move that way
-	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
-	AddMovementInput(Direction, value);
-}
 
-void AMainCharacter::MoveRight(float value)
-{
-	//Find out which way is "right" and record that the player wants to move that way
-	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
-	AddMovementInput(Direction, value);
-}
+
 
 
