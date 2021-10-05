@@ -40,9 +40,11 @@ private:
 	UPROPERTY(EditAnywhere)
 		int maxCapacity = 10;
 
-	UPROPERTY()
+public:
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		int currentAmmo;
 
+private:
 	UPROPERTY(EditAnywhere)
 		float weaponRange = 10000.0f;
 

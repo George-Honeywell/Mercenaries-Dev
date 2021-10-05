@@ -40,7 +40,7 @@ void AStandardZombie::DamageOnOverlap(AActor* OverlappedActor, AActor* OtherActo
 {
 	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("[BasicZombie Debug] - Overlapped!"));
 	GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, FString::Printf(TEXT("[BasicZombie Debug] - Overlapped Actor is %s, other is %s "), *OverlappedActor->GetName(), *OtherActor->GetName()));
-	UGameplayStatics::ApplyDamage(OtherActor, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
+	UGameplayStatics::ApplyDamage(OtherActor, 0.1f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
 
 }
 

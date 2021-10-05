@@ -102,6 +102,7 @@ void AMainCharacter::Shoot()
 void AMainCharacter::printHealth()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("[MainCharacter DEBUG] - Current Health: %f"), currentHealth));
+	currentHealth -= 250.0f;
 }
 
 float AMainCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
@@ -111,7 +112,7 @@ float AMainCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& 
 	currentHealth -= DamageToApply;
 
 	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Health Remaining: %f"), currentHealth));
-	if (currentHealth <= 0)
+	if (currentHealth <= 0.0f)
 	{
 		UWorld* World = GetWorld();
 		APlayerController* pController = World->GetFirstPlayerController();
