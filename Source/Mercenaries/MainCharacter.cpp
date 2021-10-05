@@ -101,8 +101,8 @@ void AMainCharacter::Shoot()
 
 void AMainCharacter::printHealth()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("[MainCharacter DEBUG] - Current Health: %f"), currentHealth));
-	currentHealth -= 250.0f;
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("[MainCharacter DEBUG] - Current Health: %f"), currentHealth));
+	currentHealth = maxHealth;
 }
 
 float AMainCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)

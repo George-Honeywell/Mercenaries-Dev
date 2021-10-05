@@ -48,9 +48,6 @@ private:
 	UPROPERTY(EditAnywhere)
 		float weaponRange = 10000.0f;
 
-	//UPROPERTY()
-		//bool bCanShoot;
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
