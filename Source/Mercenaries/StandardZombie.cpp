@@ -20,7 +20,6 @@ void AStandardZombie::BeginPlay()
 	Super::BeginPlay();
 	health = maxHealth;
 	OnActorBeginOverlap.AddDynamic(this, &AStandardZombie::DamageOnOverlap);
-	
 }
 
 float AStandardZombie::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
@@ -39,8 +38,8 @@ float AStandardZombie::TakeDamage(float DamageAmount, struct FDamageEvent const&
 void AStandardZombie::DamageOnOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
 	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("[BasicZombie Debug] - Overlapped!"));
-	GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, FString::Printf(TEXT("[BasicZombie Debug] - Overlapped Actor is %s, other is %s "), *OverlappedActor->GetName(), *OtherActor->GetName()));
-	UGameplayStatics::ApplyDamage(OtherActor, 0.1f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
+	//GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, FString::Printf(TEXT("[BasicZombie Debug] - Overlapped Actor is %s, other is %s "), *OverlappedActor->GetName(), *OtherActor->GetName()));
+	UGameplayStatics::ApplyDamage(OtherActor, 0.05f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
 
 }
 
@@ -51,7 +50,7 @@ void AStandardZombie::Destroy()
 		UWorld* WorldRef = GetWorld();
 		AMainCharacter* mainCharacter = Cast<AMainCharacter>(WorldRef->GetFirstPlayerController()->GetCharacter());
 		mainCharacter->currentScore += 500;
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green, FString::Printf(TEXT("Score: %i"), mainCharacter->currentScore));
+		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green, FString::Printf(TEXT("Score: %i"), mainCharacter->currentScore));
 		AActor::Destroy();
 	}
 }
@@ -60,13 +59,11 @@ void AStandardZombie::Destroy()
 void AStandardZombie::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
 void AStandardZombie::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 

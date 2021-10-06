@@ -40,25 +40,19 @@ void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
-
 	check(GEngine != nullptr);
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("[MainCharacter DEBUG] - MainCharacter in use."));
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("[MainCharacter DEBUG] - Current Score: %f"), playerScore));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("[MainCharacter DEBUG] - MainCharacter in use."));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("[MainCharacter DEBUG] - Current Score: %f"), playerScore));
 
 	Handgun = GetWorld()->SpawnActor<AHandgun>(HandgunClass);
 	Handgun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Handgun->SetOwner(this);
-	
-
 }
 
 // Called every frame
 void AMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//printHealth();
-
 }
 
 // Called to bind functionality to input
@@ -111,7 +105,7 @@ float AMainCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& 
 	DamageToApply = FMath::Min(currentHealth, DamageToApply);
 	currentHealth -= DamageToApply;
 
-	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Health Remaining: %f"), currentHealth));
+	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Health Remaining: %f"), currentHealth));
 	if (currentHealth <= 0.0f)
 	{
 		UWorld* World = GetWorld();

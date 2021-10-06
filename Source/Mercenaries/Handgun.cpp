@@ -56,7 +56,7 @@ void AHandgun::Shoot()
 	}
 	currentAmmo--;
 	//CanShoot();
-	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("[Handgun Debug] - Ammo Remaining: %i"), currentAmmo));
+	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("[Handgun Debug] - Ammo Remaining: %i"), currentAmmo));
 }
 
 // Called when the game starts or when spawned
@@ -69,7 +69,6 @@ void AHandgun::BeginPlay()
 void AHandgun::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 

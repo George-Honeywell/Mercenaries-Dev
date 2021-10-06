@@ -70,11 +70,11 @@ public:
 	UPROPERTY()
 		int32 playerScore;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		int32 currentScore;
 
 	UPROPERTY()
-		float maxHealth = 100;
+		float maxHealth = 1.0f;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		float currentHealth;
