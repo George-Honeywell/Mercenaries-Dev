@@ -73,8 +73,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		int32 currentScore;
 
-	UPROPERTY()
-		float maxHealth = 1.0f;
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Health Attributes")
+		float maxHealth = 1000.0f;
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 		float currentHealth;
