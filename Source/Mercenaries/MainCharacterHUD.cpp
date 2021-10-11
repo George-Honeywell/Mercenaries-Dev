@@ -2,7 +2,6 @@
 
 
 #include "MainCharacterHUD.h"
-#include "AmmoHUD.h"
 
 void AMainCharacterHUD::DrawHUD()
 {

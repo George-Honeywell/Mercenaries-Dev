@@ -5,7 +5,6 @@
 #include "Engine/Engine.h"
 #include "GameFramework/Actor.h"
 #include "Handgun.h"
-#include "BasicZombie.h"
 #include "GameFramework/Character.h"
 #include "Components/SkeletalMeshComponent.h"
 

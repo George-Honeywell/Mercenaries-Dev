@@ -3,7 +3,6 @@
 
 #include "MercenariesGameModeBase.h"
 #include "Blueprint/UserWidget.h"
-#include "AmmoHUD.h"
 #include "Engine/Engine.h"
 
 void AMercenariesGameModeBase::StartPlay()
