@@ -49,7 +49,7 @@ void AZombieBasic::Destroy()
 		UWorld* WorldRef = GetWorld();
 		AMainCharacter* mainCharacter = Cast<AMainCharacter>(WorldRef->GetFirstPlayerController()->GetCharacter());
 		mainCharacter->currentScore += 500;
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green, FString::Printf(TEXT("Score: %i"), mainCharacter->currentScore));
+		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green, FString::Printf(TEXT("Score: %i"), mainCharacter->currentScore));
 		AActor::Destroy();
 	}
 }
