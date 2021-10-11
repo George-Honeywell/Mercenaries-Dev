@@ -21,14 +21,14 @@ void AStandardZombieController::Tick(float DeltaSeconds)
 
 	if (lineOfSight)
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Magenta, TEXT("[AI DEBUG] - In Sight"));
+		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Magenta, TEXT("[AI DEBUG] - In Sight"));
 		SetFocus(mainCharacter);
 		MoveToActor(mainCharacter);
 	}
 	else 
 	{
 		ClearFocus(EAIFocusPriority::Gameplay);
-		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Magenta, TEXT("[AI DEBUG] - Not in Sight"));
+		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Magenta, TEXT("[AI DEBUG] - Not in Sight"));
 		StopMovement();
 	}
 }
