@@ -5,6 +5,7 @@
 #include "Engine/Engine.h"
 #include "GameFramework/Actor.h"
 #include "Handgun.h"
+#include "Blueprint/UserWidget.h"
 #include "GameFramework/Character.h"
 #include "Components/SkeletalMeshComponent.h"
 
@@ -46,6 +47,8 @@ void AMainCharacter::BeginPlay()
 	Handgun = GetWorld()->SpawnActor<AHandgun>(HandgunClass);
 	Handgun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Handgun->SetOwner(this);
+
+	//PlayerHUDInst->AddToViewport();
 }
 
 // Called every frame
@@ -115,6 +118,7 @@ float AMainCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& 
 
 	return DamageAmount;
 }
+
 
 
 
