@@ -2,6 +2,8 @@
 
 
 #include "MainCharacterHUD.h"
+#include "Blueprint/UserWidget.h"
+
 
 void AMainCharacterHUD::DrawHUD()
 {

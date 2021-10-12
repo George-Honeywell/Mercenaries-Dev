@@ -28,16 +28,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY()
-		TSubclassOf<UUserWidget> PlayerHUD;
-
-	UPROPERTY()
-		UUserWidget* PlayerHUDInst;
-
-	
-
-	
-
 private:
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<AHandgun> HandgunClass;
