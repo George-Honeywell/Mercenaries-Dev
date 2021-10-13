@@ -45,7 +45,7 @@ void AMainCharacter::BeginPlay()
 	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("[MainCharacter DEBUG] - Current Score: %f"), playerScore));
 
 	Handgun = GetWorld()->SpawnActor<AHandgun>(HandgunClass);
-	Handgun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
+	Handgun->AttachToComponent(MainCharacterCameraComponent, FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Handgun->SetOwner(this);
 }
 
