@@ -19,7 +19,9 @@ AHandgun::AHandgun()
 	Mesh->SetupAttachment(Root);
 
 	currentAmmo = maxCapacity;
+	ammoReserve = 250;
 
+	FTimerHandle UnusedHandle;
 }
 
 
@@ -55,8 +57,29 @@ void AHandgun::Shoot()
 		}
 	}
 	currentAmmo--;
-	//CanShoot();
-	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("[Handgun Debug] - Ammo Remaining: %i"), currentAmmo));
+}
+
+bool AHandgun::bCanShoot()
+{
+	if (currentAmmo > 0)
+	{
+		Shoot();
+		return true;
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Out of Ammo!"));
+		Reload();
+		return false;
+	}
+}
+
+void AHandgun::Reload()
+{
+	if (currentAmmo <= 0)
+	{
+		currentAmmo = 10;
+		ammoReserve -= 10;
+	}
 }
 
 // Called when the game starts or when spawned

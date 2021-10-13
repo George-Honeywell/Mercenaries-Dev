@@ -47,10 +47,6 @@ void AMainCharacter::BeginPlay()
 	Handgun = GetWorld()->SpawnActor<AHandgun>(HandgunClass);
 	Handgun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Handgun->SetOwner(this);
-	
-
-
-
 }
 
 // Called every frame
@@ -94,7 +90,8 @@ void AMainCharacter::MoveRight(float value)
 
 void AMainCharacter::Shoot()
 {
-	Handgun->Shoot();
+	//Handgun->Shoot();
+	Handgun->bCanShoot();
 }
 
 void AMainCharacter::printHealth()

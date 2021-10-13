@@ -20,8 +20,17 @@ public:
 	// Sets default values for this actor's properties
 	AHandgun();
 
-	void Shoot();
+	UFUNCTION()
+		void Shoot();
 	
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		int currentAmmo;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+		int ammoReserve;
+
+	UFUNCTION()
+		bool bCanShoot();
 
 protected:
 	// Called when the game starts or when spawned
@@ -40,13 +49,14 @@ private:
 	UPROPERTY(EditAnywhere)
 		int maxCapacity = 10;
 
-public:
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-		int currentAmmo;
-
-private:
 	UPROPERTY(EditAnywhere)
 		float weaponRange = 10000.0f;
+
+	UFUNCTION()
+		void Reload();
+
+
+
 
 public:	
 	// Called every frame
