@@ -90,7 +90,6 @@ void AMainCharacter::MoveRight(float value)
 
 void AMainCharacter::Shoot()
 {
-	//Handgun->Shoot();
 	Handgun->bCanShoot();
 }
 
