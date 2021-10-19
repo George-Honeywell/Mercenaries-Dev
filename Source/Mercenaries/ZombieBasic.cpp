@@ -10,7 +10,10 @@ AZombieBasic::AZombieBasic()
 	PrimaryActorTick.bCanEverTick = false;
 
 	staticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh"));
+	staticMesh->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
 	boxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
+	boxCollider->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
+
 }
 
 // Called when the game starts or when spawned
