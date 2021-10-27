@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
+#include "Components/PrimitiveComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MainCharacter.h"
 #include "Engine/Engine.h"
@@ -28,12 +29,11 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		UBoxComponent* boxCollider;
 
-
 	UFUNCTION()
 		void Destroy();
 
 	UFUNCTION()
-		void DamageOnOverlap(AActor* OverlappedActor, AActor* OtherActor);
+		void DamageOnOverlap(AActor* HitActor, AActor* OtherActor);
 
 protected:
 	// Called when the game starts or when spawned

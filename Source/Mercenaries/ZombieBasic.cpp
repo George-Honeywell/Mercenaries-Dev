@@ -2,6 +2,7 @@
 
 
 #include "ZombieBasic.h"
+#include "Components/PrimitiveComponent.h"
 
 // Sets default values
 AZombieBasic::AZombieBasic()
@@ -14,6 +15,8 @@ AZombieBasic::AZombieBasic()
 	boxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	boxCollider->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
 
+	
+
 }
 
 // Called when the game starts or when spawned
@@ -21,7 +24,9 @@ void AZombieBasic::BeginPlay()
 {
 	Super::BeginPlay();
 	currentHealth = maxHealth;
+	OnActorBeginOverlap.RemoveDynamic(this, &AZombieBasic::DamageOnOverlap);
 	OnActorBeginOverlap.AddDynamic(this, &AZombieBasic::DamageOnOverlap);
+	
 }
 
 float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
@@ -30,19 +35,24 @@ float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& Da
 	DamageToApply = FMath::Min(currentHealth, DamageToApply);
 	currentHealth -= DamageToApply;
 	UE_LOG(LogTemp, Warning, (TEXT("Health Remaining: %f")), currentHealth);
-	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Health Remaining: %f"), health));
+	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Health Remaining: %f"), currentHealth));
 
 	Destroy();
 
 	return DamageToApply;
 }
 
-void AZombieBasic::DamageOnOverlap(AActor* OverlappedActor, AActor* OtherActor)
+void AZombieBasic::DamageOnOverlap(AActor* HitActor, AActor* OtherActor)
 {
 	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("[BasicZombie Debug] - Overlapped!"));
 	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("[ZombieBasic Debug] - Overlapped Actor is %s, other is %s "), *OverlappedActor->GetName(), *OtherActor->GetName()));
-	UGameplayStatics::ApplyDamage(OtherActor, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
-
+	
+	//UGameplayStatics::ApplyDamage(OtherActor, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
+	UWorld* WorldRef = GetWorld();
+	AMainCharacter* mainCharacter = Cast<AMainCharacter>(WorldRef->GetFirstPlayerController()->GetCharacter());
+	UGameplayStatics::ApplyDamage(mainCharacter, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
+	
+	
 }
 
 void AZombieBasic::Destroy()
