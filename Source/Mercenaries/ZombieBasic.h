@@ -48,6 +48,12 @@ private:
 	UPROPERTY(VisibleAnywhere)
 		float currentHealth = maxHealth;
 
+	UPROPERTY()
+		UWorld* WorldRef;
+
+	UPROPERTY()
+		AMainCharacter* mainCharacter;
+
 
 public:	
 	// Called every frame
