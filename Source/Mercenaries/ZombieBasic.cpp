@@ -38,11 +38,11 @@ float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& Da
 }
 
 void AZombieBasic::DamageOnOverlap(AActor* HitActor, AActor* OtherActor)
-{	
+{
 	if (OtherActor->ActorHasTag("Player"))
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
-	}	
+	}
 }
 
 void AZombieBasic::Destroy()
