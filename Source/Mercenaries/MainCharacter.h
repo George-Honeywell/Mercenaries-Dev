@@ -42,21 +42,18 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	//Handles Input for moving FORWARD and BACK
+	// Handles Input for moving FORWARD and BACK
 	UFUNCTION()
 		void MoveForward(float value);
 
-	//Handles input for moving RIGHT and LEFT
+	// Handles input for moving RIGHT and LEFT
 	UFUNCTION()
 		void MoveRight(float value);
 
 	UFUNCTION()
 		void Shoot();
 
-	UFUNCTION()
-		void printHealth();
-
-	//FPS camera
+	// FPS camera
 	UPROPERTY(VisibleAnywhere)
 		UCameraComponent* MainCharacterCameraComponent;
 

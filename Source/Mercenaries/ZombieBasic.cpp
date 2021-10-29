@@ -14,9 +14,6 @@ AZombieBasic::AZombieBasic()
 	staticMesh->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
 	boxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	boxCollider->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
-
-	
-
 }
 
 // Called when the game starts or when spawned
@@ -25,9 +22,7 @@ void AZombieBasic::BeginPlay()
 	Super::BeginPlay();
 	currentHealth = maxHealth;
 	OnActorBeginOverlap.RemoveDynamic(this, &AZombieBasic::DamageOnOverlap);
-	OnActorBeginOverlap.AddDynamic(this, &AZombieBasic::DamageOnOverlap);
-	
-	
+	OnActorBeginOverlap.AddDynamic(this, &AZombieBasic::DamageOnOverlap);	
 }
 
 float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
@@ -36,7 +31,6 @@ float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& Da
 	DamageToApply = FMath::Min(currentHealth, DamageToApply);
 	currentHealth -= DamageToApply;
 	UE_LOG(LogTemp, Warning, (TEXT("Zombie Health Remaining: %f.")), currentHealth);
-	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("Health Remaining: %f"), currentHealth));
 
 	Destroy();
 
@@ -44,18 +38,11 @@ float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& Da
 }
 
 void AZombieBasic::DamageOnOverlap(AActor* HitActor, AActor* OtherActor)
-{
-	//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("[BasicZombie Debug] - Overlapped!"));
-	GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, FString::Printf(TEXT("HitActor is: %s. OtherActor is: %s "), *HitActor->GetName(), *OtherActor->GetName()));
-	
-	if (OtherActor == mainCharacter)
+{	
+	if (OtherActor->ActorHasTag("Player"))
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
-	}
-
-	//UGameplayStatics::ApplyDamage(OtherActor, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
-		
-	
+	}	
 }
 
 void AZombieBasic::Destroy()
@@ -65,7 +52,6 @@ void AZombieBasic::Destroy()
 		WorldRef = GetWorld();
 		mainCharacter = Cast<AMainCharacter>(WorldRef->GetFirstPlayerController()->GetCharacter());
 		mainCharacter->currentScore += 500;
-		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Green, FString::Printf(TEXT("Score: %i"), mainCharacter->currentScore));
 		AActor::Destroy();
 	}
 }
@@ -81,6 +67,5 @@ void AZombieBasic::Tick(float DeltaTime)
 void AZombieBasic::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
