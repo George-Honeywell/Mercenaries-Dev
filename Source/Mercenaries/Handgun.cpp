@@ -50,7 +50,7 @@ void AHandgun::Shoot()
 		DrawDebugLine(GetWorld(), Location, hit.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
 
 		AActor* hitActor = hit.GetActor();
-		if (hitActor != nullptr) 
+		if (hitActor != nullptr && !hitActor->ActorHasTag("Player")) 
 		{
 			FPointDamageEvent DamageEvent(power, hit, ShotDirection, nullptr);
 			hit.GetActor()->TakeDamage(power, DamageEvent, OwnerController, this);
@@ -67,7 +67,6 @@ bool AHandgun::bCanShoot()
 		return true;
 	}
 	else {
-		UE_LOG(LogTemp, Warning, TEXT("Out of Ammo!"));
 		Reload();
 		return false;
 	}
