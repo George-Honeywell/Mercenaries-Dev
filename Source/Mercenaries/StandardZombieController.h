@@ -2,6 +2,9 @@
 
 #pragma once
 
+#include "Perception/PawnSensingComponent.h"
+#include "ZombieBasic.h"
+
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "Engine/Engine.h"
@@ -20,7 +23,11 @@ public:
 
 	APawn* mainCharacter;
 
+	UPROPERTY()
+		AZombieBasic* zombieBasic;
+
+	void OnSeePawn(APawn* OtherPawn);
+
 protected:
 	virtual void BeginPlay() override;
-	
 };

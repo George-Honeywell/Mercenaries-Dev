@@ -5,6 +5,7 @@
 
 #include "Kismet/GameplayStatics.h"
 
+
 void AStandardZombieController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -15,20 +16,30 @@ void AStandardZombieController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	MoveToActor(mainCharacter);
+	OnSeePawn(mainCharacter);
+}
 
+void AStandardZombieController::OnSeePawn(APawn* OtherPawn)
+{
 	bool lineOfSight = LineOfSightTo(mainCharacter);
 
-	if (lineOfSight)
+	AZombieBasic* zombieBasic = Cast<AZombieBasic>(GetOwner());
+		if (zombieBasic != nullptr) return;
+		
+		
+	float getPeripheralAngle = zombieBasic->pawnSensor->GetPeripheralVisionAngle();
+
+	if (getPeripheralAngle <= 20.0f)
 	{
-		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Magenta, TEXT("[AI DEBUG] - In Sight"));
+		FString message = TEXT("Saw Actor: %s" + OtherPawn->GetName());
+		GEngine->AddOnScreenDebugMessage(-1, 0.25f, FColor::Magenta, message);
 		SetFocus(mainCharacter);
 		MoveToActor(mainCharacter);
 	}
-	else 
+	else
 	{
 		ClearFocus(EAIFocusPriority::Gameplay);
-		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Magenta, TEXT("[AI DEBUG] - Not in Sight"));
+		GEngine->AddOnScreenDebugMessage(-1, 0.25f, FColor::Magenta, TEXT("[AI DEBUG] - Not in Sight"));
 		StopMovement();
 	}
 }

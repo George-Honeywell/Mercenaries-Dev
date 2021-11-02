@@ -7,6 +7,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/PrimitiveComponent.h"
+#include "Perception/PawnSensingComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "MainCharacter.h"
 #include "Engine/Engine.h"
@@ -28,6 +30,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 		UBoxComponent* boxCollider;
+
+	UPROPERTY(VisibleAnywhere)
+		UPawnSensingComponent* pawnSensor;
+
 
 	UFUNCTION()
 		void Destroy();

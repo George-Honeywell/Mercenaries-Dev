@@ -12,8 +12,11 @@ AZombieBasic::AZombieBasic()
 
 	staticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh"));
 	staticMesh->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
+
 	boxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollider"));
 	boxCollider->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
+
+	pawnSensor = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("Pawn Sensor"));
 }
 
 // Called when the game starts or when spawned
@@ -22,7 +25,7 @@ void AZombieBasic::BeginPlay()
 	Super::BeginPlay();
 	currentHealth = maxHealth;
 	OnActorBeginOverlap.RemoveDynamic(this, &AZombieBasic::DamageOnOverlap);
-	OnActorBeginOverlap.AddDynamic(this, &AZombieBasic::DamageOnOverlap);	
+	OnActorBeginOverlap.AddDynamic(this, &AZombieBasic::DamageOnOverlap);
 }
 
 float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
