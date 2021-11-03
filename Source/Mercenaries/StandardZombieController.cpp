@@ -5,6 +5,11 @@
 
 #include "Kismet/GameplayStatics.h"
 
+AStandardZombieController::AStandardZombieController()
+{
+	//zombieBasic = CreateDefaultSubobject<AZombieBasic>(TEXT("zombieBasic"));
+	//check(zombieBasic != nullptr);
+}
 
 void AStandardZombieController::BeginPlay()
 {
@@ -22,14 +27,11 @@ void AStandardZombieController::Tick(float DeltaSeconds)
 void AStandardZombieController::OnSeePawn(APawn* OtherPawn)
 {
 	bool lineOfSight = LineOfSightTo(mainCharacter);
+	//zombieBasic->pawnSensor->SetPeripheralVisionAngle(20.0f);
+	//float getPeripheralAngle = zombieBasic->pawnSensor->GetPeripheralVisionAngle();
+	//UE_LOG(LogTemp, Warning, (TEXT("Peripheral Vision is: %f")), getPeripheralAngle);
 
-	AZombieBasic* zombieBasic = Cast<AZombieBasic>(GetOwner());
-		if (zombieBasic != nullptr) return;
-		
-		
-	float getPeripheralAngle = zombieBasic->pawnSensor->GetPeripheralVisionAngle();
-
-	if (getPeripheralAngle <= 20.0f)
+	if (lineOfSight)
 	{
 		FString message = TEXT("Saw Actor: %s" + OtherPawn->GetName());
 		GEngine->AddOnScreenDebugMessage(-1, 0.25f, FColor::Magenta, message);

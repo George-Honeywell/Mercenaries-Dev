@@ -21,12 +21,15 @@ class MERCENARIES_API AStandardZombieController : public AAIController
 public:
 	virtual void Tick(float DeltaSeconds) override;
 
+	AStandardZombieController();
+
 	APawn* mainCharacter;
 
 	UPROPERTY()
-		AZombieBasic* zombieBasic;
+		AZombieBasic* zombieBasic = nullptr;
 
-	void OnSeePawn(APawn* OtherPawn);
+	UFUNCTION()
+		void OnSeePawn(APawn* OtherPawn);
 
 protected:
 	virtual void BeginPlay() override;

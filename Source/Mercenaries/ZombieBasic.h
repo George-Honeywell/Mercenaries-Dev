@@ -34,6 +34,10 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		UPawnSensingComponent* pawnSensor;
 
+	//UPROPERTY(VisibleAnywhere)
+		
+		
+
 
 	UFUNCTION()
 		void Destroy();
