@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/ActorComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
@@ -39,6 +40,9 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere)
 		USceneComponent* Root;
+
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* staticMesh;
 
 	UPROPERTY(VisibleAnywhere)
 		USkeletalMeshComponent* Mesh;

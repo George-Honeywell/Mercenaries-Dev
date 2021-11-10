@@ -15,8 +15,11 @@ AHandgun::AHandgun()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SetRootComponent(Root);
 
-	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(Root);
+	staticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("staticMesh"));
+	staticMesh->SetupAttachment(Root);
+
+	//Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
+	//Mesh->SetupAttachment(Root);
 
 	currentAmmo = maxCapacity;
 	ammoReserve = 1000;
