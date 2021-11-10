@@ -38,10 +38,10 @@ protected:
 
 private:
 	UPROPERTY(VisibleAnywhere)
-	USceneComponent* Root;
+		USceneComponent* Root;
 
 	UPROPERTY(VisibleAnywhere)
-	USkeletalMeshComponent* Mesh;
+		USkeletalMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere)
 		float power = 25.0f;

@@ -19,7 +19,7 @@ AHandgun::AHandgun()
 	Mesh->SetupAttachment(Root);
 
 	currentAmmo = maxCapacity;
-	ammoReserve = 250;
+	ammoReserve = 1000;
 
 	FTimerHandle UnusedHandle;
 }
