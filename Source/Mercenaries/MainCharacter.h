@@ -60,6 +60,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		FVector MuzzleOffset;
 
+	// Gun Setup
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* gunMesh;
+
 	UPROPERTY()
 		int32 playerScore;
 

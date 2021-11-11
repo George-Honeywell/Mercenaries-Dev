@@ -24,10 +24,13 @@ AMainCharacter::AMainCharacter()
 	MainCharacterCameraComponent->SetupAttachment(CastChecked<USceneComponent, UCapsuleComponent>(GetCapsuleComponent()));
 
 	// Position the camera slightly above the eyes
-	MainCharacterCameraComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f + BaseEyeHeight));
+	//MainCharacterCameraComponent->SetRelativeLocation(FVector(0.0f, 0.0f, 50.0f + BaseEyeHeight));
 
 	// Enable the pawn to control camera rotation
 	MainCharacterCameraComponent->bUsePawnControlRotation = true;
+
+	gunMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("GunMesh"));
+	gunMesh->AttachToComponent(MainCharacterCameraComponent, FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 
 	currentHealth = maxHealth;
 	playerScore = currentScore;
@@ -41,7 +44,6 @@ void AMainCharacter::BeginPlay()
 	check(GEngine != nullptr);
 
 	Handgun = GetWorld()->SpawnActor<AHandgun>(HandgunClass);
-	Handgun->AttachToComponent(MainCharacterCameraComponent, FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Handgun->SetOwner(this);
 }
 

@@ -38,14 +38,14 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY(VisibleAnywhere)
-		USceneComponent* Root;
+	//UPROPERTY(VisibleAnywhere)
+	//	USceneComponent* Root;
 
-	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* staticMesh;
+	//UPROPERTY(VisibleAnywhere)
+	//	UStaticMeshComponent* staticMesh;
 
-	UPROPERTY(VisibleAnywhere)
-		USkeletalMeshComponent* Mesh;
+	//UPROPERTY(VisibleAnywhere)
+	//	USkeletalMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere)
 		float power = 25.0f;

@@ -12,11 +12,11 @@ AHandgun::AHandgun()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	SetRootComponent(Root);
+	//Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	//SetRootComponent(Root);
 
-	staticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("staticMesh"));
-	staticMesh->SetupAttachment(Root);
+	//staticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("staticMesh"));
+	//staticMesh->SetupAttachment(Root);
 
 	//Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
 	//Mesh->SetupAttachment(Root);
