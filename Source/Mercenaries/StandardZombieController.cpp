@@ -33,15 +33,15 @@ void AStandardZombieController::OnSeePawn(APawn* OtherPawn)
 
 	if (lineOfSight)
 	{
-		FString message = TEXT("Saw Actor: %s" + OtherPawn->GetName());
-		GEngine->AddOnScreenDebugMessage(-1, 0.25f, FColor::Magenta, message);
+		//FString message = TEXT("Saw Actor: %s" + OtherPawn->GetName());
+		//GEngine->AddOnScreenDebugMessage(-1, 0.25f, FColor::Magenta, message);
 		SetFocus(mainCharacter);
 		MoveToActor(mainCharacter);
 	}
 	else
 	{
 		ClearFocus(EAIFocusPriority::Gameplay);
-		GEngine->AddOnScreenDebugMessage(-1, 0.25f, FColor::Magenta, TEXT("[AI DEBUG] - Not in Sight"));
+		//GEngine->AddOnScreenDebugMessage(-1, 0.25f, FColor::Magenta, TEXT("[AI DEBUG] - Not in Sight"));
 		StopMovement();
 	}
 }
