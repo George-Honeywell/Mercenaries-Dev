@@ -38,14 +38,21 @@ void AHandgun::Shoot()
 	AController* OwnerController = OwnerPawn->GetController();
 		if (OwnerController == nullptr) return;
 
-	FVector Location;
-	FRotator Rotation;
-	FHitResult hit;
-	OwnerController->GetPlayerViewPoint(Location, Rotation);
 
+	WorldRef = GetWorld();
+	mainCharacter = Cast<AMainCharacter>(WorldRef->GetFirstPlayerController()->GetCharacter());
+	FVector Location = ((mainCharacter->gunMuzzle != nullptr) ? mainCharacter->gunMuzzle->GetComponentLocation() : GetActorLocation());
+	FRotator Rotation = mainCharacter->GetControlRotation();
+	FHitResult hit;
 	FVector End = Location + Rotation.Vector() * weaponRange;
-	
+
+	if (FireSound != nullptr)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
+	}
+
 	bool bIsHit = GetWorld()->LineTraceSingleByChannel(hit, Location, End, ECC_GameTraceChannel2);
+
 	if (bIsHit)
 	{
 		FVector ShotDirection = -Rotation.Vector();
@@ -53,6 +60,9 @@ void AHandgun::Shoot()
 		DrawDebugLine(GetWorld(), Location, hit.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
 
 		AActor* hitActor = hit.GetActor();
+		
+		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, *hitActor->GetName());
+	
 		if (hitActor != nullptr && !hitActor->ActorHasTag("Player")) 
 		{
 			FPointDamageEvent DamageEvent(power, hit, ShotDirection, nullptr);

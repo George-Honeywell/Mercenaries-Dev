@@ -8,6 +8,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/SceneComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "MainCharacter.generated.h"
 
@@ -63,6 +64,9 @@ public:
 	// Gun Setup
 	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* gunMesh;
+
+	UPROPERTY(VisibleAnywhere)
+		USceneComponent* gunMuzzle;
 
 	UPROPERTY()
 		int32 playerScore;

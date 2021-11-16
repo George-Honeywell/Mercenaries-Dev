@@ -6,7 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "Components/ActorComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "MainCharacter.h"
 #include "GameFramework/PlayerController.h"
+#include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 #include "Engine/Engine.h"
 #include "Engine/EngineTypes.h"
@@ -33,19 +35,20 @@ public:
 	UFUNCTION()
 		bool bCanShoot();
 
+	UPROPERTY(EditAnywhere)
+		USoundBase* FireSound;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
-	//UPROPERTY(VisibleAnywhere)
-	//	USceneComponent* Root;
 
-	//UPROPERTY(VisibleAnywhere)
-	//	UStaticMeshComponent* staticMesh;
+	UPROPERTY(VisibleAnywhere)
+		AMainCharacter* mainCharacter;
 
-	//UPROPERTY(VisibleAnywhere)
-	//	USkeletalMeshComponent* Mesh;
+	UPROPERTY()
+		UWorld* WorldRef;
 
 	UPROPERTY(EditAnywhere)
 		float power = 25.0f;
@@ -58,9 +61,6 @@ private:
 
 	UFUNCTION()
 		void Reload();
-
-
-
 
 public:	
 	// Called every frame
