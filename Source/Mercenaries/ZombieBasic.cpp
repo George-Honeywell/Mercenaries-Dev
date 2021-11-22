@@ -44,7 +44,7 @@ void AZombieBasic::DamageOnOverlap(AActor* HitActor, AActor* OtherActor)
 {
 	if (OtherActor->ActorHasTag("Player"))
 	{
-		UGameplayStatics::ApplyDamage(OtherActor, 25.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
+		UGameplayStatics::ApplyDamage(OtherActor, 20.0f, GetWorld()->GetFirstPlayerController(), this, UDamageType::StaticClass());
 	}
 }
 
@@ -55,6 +55,7 @@ void AZombieBasic::Destroy()
 		WorldRef = GetWorld();
 		mainCharacter = Cast<AMainCharacter>(WorldRef->GetFirstPlayerController()->GetCharacter());
 		mainCharacter->currentScore += 500;
+		mainCharacter->enemiesKilled += 1;
 		AActor::Destroy();
 	}
 }

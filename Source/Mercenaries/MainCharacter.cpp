@@ -37,6 +37,8 @@ AMainCharacter::AMainCharacter()
 
 	currentHealth = maxHealth;
 	playerScore = currentScore;
+
+	enemiesKilled = 0;
 }
 
 // Called when the game starts or when spawned
