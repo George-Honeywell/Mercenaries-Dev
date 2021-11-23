@@ -57,7 +57,7 @@ void AHandgun::Shoot()
 	{
 		FVector ShotDirection = -Rotation.Vector();
 		DrawDebugPoint(GetWorld(), hit.Location, 20, FColor::Green, false, 3.0f);
-		DrawDebugLine(GetWorld(), Location, hit.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
+		//DrawDebugLine(GetWorld(), Location, hit.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
 
 		AActor* hitActor = hit.GetActor();
 		
