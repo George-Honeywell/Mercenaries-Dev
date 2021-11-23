@@ -5,9 +5,11 @@
 #include "Engine/Engine.h"
 #include "GameFramework/Actor.h"
 #include "Blueprint/UserWidget.h"
+
 #include "Handgun.h"
 #include "GameFramework/Character.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "MainCharacterController.h"
 
 
 // Sets default values
@@ -100,12 +102,18 @@ float AMainCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& 
 	DamageToApply = FMath::Min(currentHealth, DamageToApply);
 	currentHealth -= DamageToApply;
 
-	if (currentHealth <= 0.0f)
+	if (currentHealth <= 0)
 	{
-		UWorld* World = GetWorld();
-		APlayerController* pController = World->GetFirstPlayerController();
-		GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("You're Dead!"));
-		pController->ConsoleCommand("quit");
+		//UWorld* World = GetWorld();
+		//APlayerController* pController = World->GetFirstPlayerController();
+		//GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Red, TEXT("You're Dead!"));
+		//pController->ConsoleCommand("quit");
+		AMainCharacterController* characterController = Cast<AMainCharacterController>(GetController());
+		if (characterController != nullptr)
+		{
+			characterController->GameHasEnded(this, false);			
+		}
+		
 	}
 
 	return DamageAmount;

@@ -8,17 +8,33 @@
 void AMainCharacterController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	worldRef = GetWorld();
+	mainCharacter = Cast<AMainCharacter>(worldRef->GetFirstPlayerController()->GetCharacter());
+
 	UUserWidget* HUD = CreateWidget(this, HUDClass);
 	if (HUD != nullptr)
 	{
 		HUD->AddToViewport();
-		//GEngine->AddOnScreenDebugMessage(1, 3.0f, FColor::Red, TEXT("Added to viewport!"));
 	}
 
 	UUserWidget* Ammo = CreateWidget(this, AmmoClass);
 	if (Ammo != nullptr)
 	{
 		Ammo->AddToViewport();
+	}
+}
+
+void AMainCharacterController::GameHasEnded(AActor* EndGameFocus, bool bIsWinner)
+{
+	UUserWidget* GameOver = CreateWidget(this, GameOverHUD);
+	if (GameOver != nullptr)
+	{
+		GameOver->AddToViewport();
+		UGameplayStatics::SetGamePaused(worldRef, true);
+		bShowMouseCursor       = true;
+		bEnableClickEvents     = true;
+		bEnableMouseOverEvents = true;
 	}
 }
 
