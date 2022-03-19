@@ -12,19 +12,8 @@ AHandgun::AHandgun()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	//Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-	//SetRootComponent(Root);
-
-	//staticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("staticMesh"));
-	//staticMesh->SetupAttachment(Root);
-
-	//Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
-	//Mesh->SetupAttachment(Root);
-
 	currentAmmo = maxCapacity;
 	ammoReserve = 1000;
-
-	FTimerHandle UnusedHandle;
 }
 
 
@@ -55,9 +44,9 @@ void AHandgun::Shoot()
 
 	if (bIsHit)
 	{
-		FVector ShotDirection = -Rotation.Vector();
+		FVector ShotDirection = Rotation.Vector();
 		DrawDebugPoint(GetWorld(), hit.Location, 20, FColor::Green, false, 3.0f);
-		//DrawDebugLine(GetWorld(), Location, hit.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
+		DrawDebugLine(GetWorld(), Location, hit.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
 
 		AActor* hitActor = hit.GetActor();
 		
