@@ -31,7 +31,6 @@ void AZombieBasic::BeginPlay()
 float AZombieBasic::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
 	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-	DamageToApply = FMath::Min(currentHealth, DamageToApply);
 	currentHealth -= DamageToApply;
 	UE_LOG(LogTemp, Warning, (TEXT("Zombie Health Remaining: %f.")), currentHealth);
 
