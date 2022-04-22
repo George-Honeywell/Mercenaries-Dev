@@ -95,5 +95,10 @@ void AHandgun::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void AHandgun::TestFunction()
+{
+	// ... Test Function for GitKraken ...
+}
+
 
 
